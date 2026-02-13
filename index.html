@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Mallipoo ❤️</title>
+<style>
+
+body{
+
+    margin:0;
+
+    font-family:'Segoe UI', sans-serif;
+
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+
+    color:white;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+/* Pages */
+
+.page{
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+/* Quote Box */
+
+.quoteBox{
+
+    max-width:450px;
+
+    background:rgba(255,255,255,0.15);
+
+    padding:20px;
+
+    border-radius:15px;
+
+    line-height:1.7;
+
+    overflow-y:auto;
+
+    max-height:65vh;
+
+    backdrop-filter: blur(5px);
+
+}
+
+/* Buttons */
+
+button{
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:25px;
+
+    font-size:16px;
+
+    margin:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:0.3s;
+
+}
+
+.yesBtn{
+
+    background:white;
+
+    color:#ff4d6d;
+
+    box-shadow:0 0 15px rgba(255,255,255,0.8);
+
+    animation:glow 1.5s infinite alternate;
+
+}
+
+@keyframes glow{
+
+    from{box-shadow:0 0 10px white;}
+
+    to{box-shadow:0 0 25px white;}
+
+}
+
+.no{
+
+    background:#444;
+
+    color:white;
+
+    position:absolute;
+
+}
+
+/* Floating Hearts */
+
+.heart{
+
+    position:fixed;
+
+    bottom:-20px;
+
+    font-size:20px;
+
+    animation:float 6s linear infinite;
+
+    color:white;
+
+}
+
+@keyframes float{
+
+    0%{transform:translateY(0);opacity:1;}
+
+    100%{transform:translateY(-800px);opacity:0;}
+
+}
+</style>
+</head>
+<body>
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+<source src="ok-kanmani.mp3" type="audio/mpeg">
+</audio>
+<!-- PAGE 1 -->
+<div class="page" id="proposalPage">
+<h1>Happy Valentine’s Day My Love! ❤️</h1>
+<h2>Will you be my Valentine, Mallipoo? 💌</h2>
+<button class="yesBtn" onclick="goToQuotes()">Yes 💖</button>
+<button class="no" id="noBtn">No 🙈</button>
+</div>
+<!-- PAGE 2 -->
+<div class="page hidden" id="page1">
+<h2>For You ❤️</h2>
+<div class="quoteBox">
+<p><b>After you, I finally feel complete.</b><br>
+
+        Like every missing piece of my soul quietly found its home in you.</p>
+<p><b>You were the rain in my desert.</b><br>
+
+        When my world was dry and tired, you came and made everything bloom again.</p>
+<p><b>You are my sunshine in the mornings and my moonlight in the dark times.</b><br>
+
+        Even when life feels heavy, you are the light that never leaves me.</p>
+<p><b>I promise there are no greys in our love — only black and white.</b><br>
+
+        No confusion. No doubt. Just loyalty, clarity, and forever.</p>
+</div>
+<button onclick="nextPage()">Next ❤️</button>
+</div>
+<!-- PAGE 3 -->
+<div class="page hidden" id="page2">
+<h2>Still More… 💖</h2>
+<div class="quoteBox">
+<p><b>I’m already yours.</b><br>
+
+        Completely. Fully. Without hesitation.</p>
+<p><b>I will never get tired of loving you.</b><br>
+
+        Loving you is not a duty — it’s my happiness.</p>
+<p><b>For you, I can sing even when I’m shy, dance even when there’s no music, and make your belly laugh until it hurts.</b></p>
+<p><b>With you, I don’t just exist. I live.</b></p>
+<p><b>If love had a face, it would look like you.</b></p>
+<p><b>Forever isn’t long enough if it’s with you. ❤️</b></p>
+</div>
+<button onclick="backPage()">Back 💖</button>
+</div>
+<script>
+
+/* Start Music When YES Clicked */
+
+function goToQuotes(){
+
+    document.getElementById("proposalPage").classList.add("hidden");
+
+    document.getElementById("page1").classList.remove("hidden");
+
+    var music = document.getElementById("bgMusic");
+
+    music.volume = 0;
+
+    music.play();
+
+    // Smooth fade in
+
+    var fade = setInterval(function(){
+
+        if(music.volume < 0.9){
+
+            music.volume += 0.05;
+
+        } else {
+
+            clearInterval(fade);
+
+        }
+
+    },200);
+
+}
+
+/* Navigation */
+
+function nextPage(){
+
+    document.getElementById("page1").classList.add("hidden");
+
+    document.getElementById("page2").classList.remove("hidden");
+
+}
+
+function backPage(){
+
+    document.getElementById("page2").classList.add("hidden");
+
+    document.getElementById("page1").classList.remove("hidden");
+
+}
+
+/* Floating NO Button */
+
+var noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function(){
+
+    var x = Math.random() * (window.innerWidth - 100);
+
+    var y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+
+    noBtn.style.top = y + "px";
+
+});
+
+/* Floating Hearts */
+
+setInterval(function(){
+
+    var heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function(){
+
+        heart.remove();
+
+    },6000);
+
+},600);
+</script>
+</body>
+</html>
+ 
