@@ -21,8 +21,6 @@ body{
 
 }
 
-/* Pages */
-
 .page{
 
     height:100vh;
@@ -45,8 +43,6 @@ body{
 
 }
 
-/* Quote Box */
-
 .quoteBox{
 
     max-width:450px;
@@ -63,11 +59,7 @@ body{
 
     max-height:65vh;
 
-    backdrop-filter: blur(5px);
-
 }
-
-/* Buttons */
 
 button{
 
@@ -97,16 +89,6 @@ button{
 
     box-shadow:0 0 15px rgba(255,255,255,0.8);
 
-    animation:glow 1.5s infinite alternate;
-
-}
-
-@keyframes glow{
-
-    from{box-shadow:0 0 10px white;}
-
-    to{box-shadow:0 0 25px white;}
-
 }
 
 .no{
@@ -118,8 +100,6 @@ button{
     position:absolute;
 
 }
-
-/* Floating Hearts */
 
 .heart{
 
@@ -146,7 +126,7 @@ button{
 </head>
 <body>
 <!-- Background Music -->
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="auto">
 <source src="ok-kanmani.mp3" type="audio/mpeg">
 </audio>
 <!-- PAGE 1 -->
@@ -194,7 +174,7 @@ button{
 </div>
 <script>
 
-/* Start Music When YES Clicked */
+/* Start Music on YES click */
 
 function goToQuotes(){
 
@@ -204,25 +184,7 @@ function goToQuotes(){
 
     var music = document.getElementById("bgMusic");
 
-    music.volume = 0;
-
     music.play();
-
-    // Smooth fade in
-
-    var fade = setInterval(function(){
-
-        if(music.volume < 0.9){
-
-            music.volume += 0.05;
-
-        } else {
-
-            clearInterval(fade);
-
-        }
-
-    },200);
 
 }
 
